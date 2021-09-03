@@ -1,3 +1,25 @@
 <resources>
-    <string name="app_name">ponomarev</string>
+    <string name="app_name">Prog GIFs</string>
+
+    <string name="tab_random">Случайные</string>
+    <string name="tab_top">Лучшие</string>
+    <string name="tab_latest">Последние</string>
+    <string name="tab_hot">Горячие</string>
+    <string name="fab_description_refresh">Refresh a gif</string>
+    <string name="fab_description_left">Back to a previous gif</string>
+    <string name="fab_description_right">Go to next gif</string>
+
+    <string name="error_gif_text">Не удалось загрузить гифку. Чтобы повторить - нажмите на кнопку снизу.</string>
+    <string name="error_snackbar_text">Котик плачет, ведь гифка не может загрузится.</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <string name="author_name">Романюк Андрей</string>
+    <string name="author_email">asromanyuk@edu.hse.ru</string>
+
+    <string name="dialog_info_title">О приложении</string>
+    <string name="dialog_info_close">Закрыть</string>
+
+    <string name="menu_settings">Настройки</string>
+    <string name="menu_about">О программе</string>
+    <string name="description_image_gif">gif image</string>
 </resources>
