@@ -13,20 +13,9 @@ interface GifService {
         @Query("json") json: Boolean = true
     ): GifBody
 
-    @GET("latest/{page}")
-    fun getLatestGifs(
-        @Path("page") page: Int,
-        @Query("json") json: Boolean = true
-    ): GifsResponse
-
-    @GET("hot/{page}")
-    fun getHottestGifs(
-        @Path("page") page: Int,
-        @Query("json") json: Boolean = true
-    ): GifsResponse
-
-    @GET("top/{page}")
-    fun getTopGifs(
+    @GET("{section}/{page}")
+    fun getGifsBySection(
+        @Path("section") section: String,
         @Path("page") page: Int,
         @Query("json") json: Boolean = true
     ): GifsResponse
