@@ -4,11 +4,7 @@ import com.tinkoff.ponomarev.domain.entity.Gif
 
 interface GifRepository{
 
-    suspend fun fetchTopGifs(page: Int): List<Gif>
-
-    suspend fun fetchLatestGifs(page: Int): List<Gif>
-
-    suspend fun fetchHottestGifs(page: Int): List<Gif>
+    suspend fun fetchGifsBySection(section: String, page: Int): List<Gif>
 
     suspend fun fetchRandomGif(): Gif
 }
