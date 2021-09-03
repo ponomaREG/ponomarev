@@ -5,4 +5,9 @@ data class Gif(
     val description: String,
     val author: String,
     val gifURL: String
-)
+){
+    val gifURLHttps: String
+    get() {
+        return gifURL.replace("http","https")
+    }
+}

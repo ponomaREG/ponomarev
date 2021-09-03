@@ -110,7 +110,7 @@ class ViewModelSectionWithGifs @AssistedInject constructor(
                 visibilityOfButtonPreviously = hasPreviouslyGif(),
                 visibilityOfLoadingIndicator = false,
                 visibilityOfButtonNext = true,
-                currentGifUrl = gif.gifURL,
+                currentGifUrl = gif.gifURLHttps,
                 currentError = null
             )
     }

@@ -9,12 +9,12 @@ import retrofit2.http.Query
 interface GifService {
 
     @GET("random")
-    fun getRandomGif(
+    suspend fun getRandomGif(
         @Query("json") json: Boolean = true
     ): GifBody
 
     @GET("{section}/{page}")
-    fun getGifsBySection(
+    suspend fun getGifsBySection(
         @Path("section") section: String,
         @Path("page") page: Int,
         @Query("json") json: Boolean = true

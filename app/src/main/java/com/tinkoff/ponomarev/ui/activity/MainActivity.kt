@@ -8,7 +8,9 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.tinkoff.ponomarev.R
 import com.tinkoff.ponomarev.databinding.ActivityMainBinding
 import com.tinkoff.ponomarev.ui.adapter.PagerAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewPagerAdapter: PagerAdapter
@@ -18,11 +20,16 @@ class MainActivity : AppCompatActivity() {
         binding =
             DataBindingUtil.setContentView(this, R.layout.activity_main)
         initAdapters()
+        attachAdapter()
         attachTabLayoutToViewPager()
     }
 
     private fun initAdapters(){
         viewPagerAdapter = PagerAdapter(this)
+    }
+
+    private fun attachAdapter(){
+        binding.mainViewPager.adapter = viewPagerAdapter
     }
 
     private fun attachTabLayoutToViewPager(){
