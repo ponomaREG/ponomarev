@@ -5,6 +5,7 @@ import com.tinkoff.ponomarev.ui.error.Error
 data class UIState(
     var visibilityOfButtonPreviously: Boolean,
     var visibilityOfLoadingIndicator: Boolean,
+    var visibilityOfButtonNext: Boolean,
     var currentGifUrl: String?,
     var currentError: Error?
 )
