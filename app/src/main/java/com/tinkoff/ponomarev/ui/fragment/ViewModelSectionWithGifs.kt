@@ -1,17 +1,21 @@
 package com.tinkoff.ponomarev.ui.fragment
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
 import com.tinkoff.ponomarev.domain.entity.Gif
+import com.tinkoff.ponomarev.domain.usecase.GetGifsOfSectionUseCase
+import com.tinkoff.ponomarev.domain.usecase.GetRandomGifUseCase
 import com.tinkoff.ponomarev.ui.entity.SearchType
 import com.tinkoff.ponomarev.ui.error.Error
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class ViewModelSectionWithGifs @AssistedInject constructor(
+    private val getRandomGifUseCase: GetRandomGifUseCase,
+    private val getGifsOfSectionUseCase: GetGifsOfSectionUseCase,
     @Assisted private val searchType: SearchType
 ): ViewModel() {
 
@@ -64,6 +68,7 @@ class ViewModelSectionWithGifs @AssistedInject constructor(
 
     private fun loadPreviouslyGif(){
         currentNumberOfGif--
+        loadGifFromCache()
     }
 
     private fun loadGifFromCache(){
@@ -71,8 +76,22 @@ class ViewModelSectionWithGifs @AssistedInject constructor(
     }
 
     private fun loadGifFromNetwork(){
-        currentPage++
-
+        setUiStateLoading()
+        viewModelScope.launch(Dispatchers.IO){
+            if(searchType == SearchType.RANDOM) {
+                val gif = getRandomGifUseCase()
+                loadedGifs.add(gif)
+                withContext(Dispatchers.Main) {
+                    emitData(gif)
+                }
+            }else {
+                val gifs = getGifsOfSectionUseCase(searchType.sectionName, ++currentPage)
+                loadedGifs.addAll(gifs)
+                withContext(Dispatchers.Main){
+                    emitData(gifs.first())
+                }
+            }
+        }
     }
 
     private fun isGifInCache(position: Int): Boolean{
@@ -89,19 +108,32 @@ class ViewModelSectionWithGifs @AssistedInject constructor(
         _currentUiState.value =
             UIState(
                 visibilityOfButtonPreviously = hasPreviouslyGif(),
-                visibilityOfLoadingIndicator = hasNextGif(),
+                visibilityOfLoadingIndicator = false,
+                visibilityOfButtonNext = true,
                 currentGifUrl = gif.gifURL,
                 currentError = null
             )
     }
 
-    private fun emitData(error: Error){
+    private fun emitError(error: Error){
         _currentUiState.value =
             UIState(
                 visibilityOfButtonPreviously = hasPreviouslyGif(),
-                visibilityOfLoadingIndicator = hasNextGif(),
+                visibilityOfLoadingIndicator = false,
+                visibilityOfButtonNext = hasNextGif(),
                 currentGifUrl = null,
                 currentError = error
+            )
+    }
+
+    private fun setUiStateLoading(){
+        _currentUiState.value =
+            UIState(
+                visibilityOfButtonPreviously = hasPreviouslyGif(),
+                visibilityOfLoadingIndicator = true,
+                visibilityOfButtonNext = true,
+                currentGifUrl = null,
+                currentError = null
             )
     }
 
