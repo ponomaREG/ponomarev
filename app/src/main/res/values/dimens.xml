@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Page -->
+    <dimen name="page_button_margin">16dp</dimen>
+    <!-- Gif view -->
+    <dimen name="page_card_margin">16dp</dimen>
+    <dimen name="page_card_corner_radius">16dp</dimen>
+
+</resources>
