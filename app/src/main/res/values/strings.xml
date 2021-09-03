@@ -22,4 +22,9 @@
     <string name="menu_settings">Настройки</string>
     <string name="menu_about">О программе</string>
     <string name="description_image_gif">gif image</string>
+
+    <string name="section_random">random</string>
+    <string name="section_hottest">hottest</string>
+    <string name="section_top">top</string>
+    <string name="section_latest">latest</string>
 </resources>
