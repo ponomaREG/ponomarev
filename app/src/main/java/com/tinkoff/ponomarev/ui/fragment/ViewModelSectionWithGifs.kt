@@ -71,6 +71,7 @@ class ViewModelSectionWithGifs @AssistedInject constructor(
     }
 
     private fun loadGifFromNetwork(){
+        currentPage++
 
     }
 
