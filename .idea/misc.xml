@@ -3,8 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/hpisd/AndroidStudioProjects/ponomarev2/app/src/main/res/drawable/ic_arrow.xml" value="0.106" />
         <entry key="..\:/Users/hpisd/AndroidStudioProjects/ponomarev2/app/src/main/res/layout/activity_main.xml" value="0.14130434782608695" />
-        <entry key="..\:/Users/hpisd/AndroidStudioProjects/ponomarev2/app/src/main/res/layout/fragment_page.xml" value="0.14130434782608695" />
+        <entry key="..\:/Users/hpisd/AndroidStudioProjects/ponomarev2/app/src/main/res/layout/fragment_page.xml" value="0.12" />
       </map>
     </option>
   </component>

@@ -19,16 +19,17 @@
     </style>
     <!-- FloatingButton Theme -->
     <style name="Theme.Ponomarev.FloatingButton" parent="Widget.MaterialComponents.FloatingActionButton">
-        <item name="tint">@color/iconColor</item>
+        <item name="tint">@color/floatingButtonIconTint</item>
         <item name="fabCustomSize">48dp</item>
         <item name="maxImageSize">36dp</item>
+        <item name="backgroundTint">@color/floatingButtonBackgroundTint</item>
     </style>
     <!-- TabLayout Theme -->
     <style name="Theme.Ponomarev.TabLayout" parent="Widget.Design.TabLayout">
         <item name="tabIndicatorColor">@color/secondaryColor</item>
-        <item name="tabIndicatorHeight">4dp</item>
         <item name="tabTextAppearance">@style/Theme.Ponomarev.TabLayout.TextAppearance</item>
         <item name="tabSelectedTextColor">@color/secondaryColor</item>
+        <item name="tabTextColor"></item>
     </style>
     <!-- TabLayout TextAppearance -->
     <style name="Theme.Ponomarev.TabLayout.TextAppearance" parent="TextAppearance.AppCompat">

@@ -13,9 +13,6 @@
     <string name="error_snackbar_text">Котик плачет, ведь гифка не может загрузится.</string>
     <string name="title_activity_settings">SettingsActivity</string>
 
-    <string name="author_name">Романюк Андрей</string>
-    <string name="author_email">asromanyuk@edu.hse.ru</string>
-
     <string name="dialog_info_title">О приложении</string>
     <string name="dialog_info_close">Закрыть</string>
 
