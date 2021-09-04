@@ -13,10 +13,19 @@ import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.resource.gif.GifDrawable
 import com.tinkoff.ponomarev.R
 
+/**
+ * Функция-расширение, которая определяет текущую видимость вьюшки
+ * @param isVisible - видима ли
+ */
 fun View.visible(isVisible: Boolean){
     visibility = if(isVisible) View.VISIBLE else View.INVISIBLE
 }
 
+/**
+ * Функция-расширение, которая загружает и отображает гиф-изоражение в [ImageView]
+ * с помощью [Glide]
+ * @param gifUrl - url-ссылка на изображение
+ */
 fun ImageView.loadGif(gifUrl: String){
     Glide.with(this)
         .asGif()
@@ -26,6 +35,11 @@ fun ImageView.loadGif(gifUrl: String){
 
 }
 
+/**
+ * Фукнция-расширение, которая в качестве placeholder'a передает индикатор загрузки
+ * Необходима для отображения загрузки гиф-изображения непосредственно в [ImageView]
+ * @param context - контекст
+ */
 @SuppressLint("CheckResult")
 fun RequestBuilder<GifDrawable>.attachProgressDrawable(context: Context) = apply {
     val circularProgressDrawable = CircularProgressDrawable(context).apply {

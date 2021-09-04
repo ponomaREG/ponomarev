@@ -12,10 +12,16 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
+/**
+ * Модуль DI для объектов, связанных с сетью
+ */
 @InstallIn(SingletonComponent::class)
 @Module
 object NetworkModule {
 
+    /**
+     * Создание экземпляра [Retrofit]
+     */
     @ExperimentalSerializationApi
     @Provides
     @Singleton
@@ -26,6 +32,9 @@ object NetworkModule {
             .addJsonConverter()
             .build()
 
+    /**
+     * Создание экземпляра [GifService] при помощи [Retrofit]
+     */
     @Provides
     @Singleton
     fun provideGifsService(retrofit: Retrofit): GifService =

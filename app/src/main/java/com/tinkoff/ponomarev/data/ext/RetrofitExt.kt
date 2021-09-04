@@ -9,6 +9,11 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 
+/**
+ * Функцие-расширение для строителя Retrofit
+ * Необходима для создания логера Http-запросов
+ * @return [OkHttpClient]
+ */
 fun Retrofit.Builder.addHttpLoggingInterceptor(): Retrofit.Builder = apply {
     if (BuildConfig.DEBUG) {
         client(
@@ -22,6 +27,10 @@ fun Retrofit.Builder.addHttpLoggingInterceptor(): Retrofit.Builder = apply {
     }
 }
 
+/**
+ * Функцие-расширение для строителя Retrofit
+ * Необходима для создания десерилизатора Json путем kotlin-serialization
+ */
 @ExperimentalSerializationApi
 fun Retrofit.Builder.addJsonConverter(): Retrofit.Builder = apply {
     val json = Json { ignoreUnknownKeys = true }

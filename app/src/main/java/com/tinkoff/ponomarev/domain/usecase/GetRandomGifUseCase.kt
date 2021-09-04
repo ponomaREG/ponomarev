@@ -8,9 +8,21 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
+/**
+ * Сценарий для получения рандомного гиф-изображения из сети
+ * @param repository - репозиторий для получения гиф-изображений
+ */
 class GetRandomGifUseCase @Inject constructor(
     private val repository: GifRepository
 ) {
+
+    /**
+     * Метод запуска сценария
+     * @return - [Flow] с классом-статусом запроса [BaseResult]
+     * Функция сначала емиттит [BaseResult.Loading] со статусом загрузки
+     * Следом в зависимости от статуса запроса емиттит либо ошибку [BaseResult.Error],
+     * либо полученные данные [BaseResult.Success]
+     */
     suspend operator fun invoke(): Flow<BaseResult<Gif>> = flow {
         emit(BaseResult.Loading)
         try{

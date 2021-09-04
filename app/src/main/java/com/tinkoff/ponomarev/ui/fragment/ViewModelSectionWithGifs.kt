@@ -14,6 +14,13 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+/**
+ * Вьюмодель, которая управляет текущим состоянием View
+ * @param getGifsOfSectionUseCase - сценарий получения секции с гиф-изображениями из сети
+ * @param getRandomGifUseCase - сценарий получения рандомного гиф-изображения из сети
+ * @param searchType - текущий тип поиска, от которого и зависит выбор нужного сценария для
+ * получения гиф-изображений ([getRandomGifUseCase] или [getGifsOfSectionUseCase])
+ */
 class ViewModelSectionWithGifs @AssistedInject constructor(
     private val getRandomGifUseCase: GetRandomGifUseCase,
     private val getGifsOfSectionUseCase: GetGifsOfSectionUseCase,
@@ -21,6 +28,12 @@ class ViewModelSectionWithGifs @AssistedInject constructor(
 ): ViewModel() {
 
     companion object{
+        /**
+         * Метод для опрокидывания фабрики для вьюмодели. Нужен для assited-инжекта текущего
+         * типа поиска [searchType] из фрагмента
+         * @param assistedFactory - assisted-фабрика для вьюмодели
+         * @param searchType - тип поиска
+         */
         fun provideFactory(
             assistedFactory: AssistedFactory,
             searchType: SearchType
@@ -31,35 +44,84 @@ class ViewModelSectionWithGifs @AssistedInject constructor(
         }
     }
 
+    /**
+     * Публичный живые данные с текущим состоянием UI
+     */
     val currentUiState: LiveData<UIState>
     get() = _currentUiState
 
+    /**
+     * Приватные мутабельные живые данные с текущим состоянием UI
+     * Изменяя данное значение, происходит изменение UI-компонента(фрагмента)
+     */
     private val _currentUiState: MutableLiveData<UIState> = MutableLiveData()
+
+    /**
+     * Приватный изменяемый лист с уже загруженными объектами гиф-изображений [Gif]
+     */
     private val loadedGifs:MutableList<Gif> = mutableListOf()
+
+    /**
+     * Текущий номер гиф-изображения
+     */
     private var currentNumberOfGif = -1
+
+    /**
+     * Текущая страница. Изменяется только, когда используется сценарий поиска гиф-изображений
+     * по секции [GetGifsOfSectionUseCase]
+     */
     private var currentPage = -1
 
+    /**
+     * Блок, исполняемый при иницилизации вьюмодели
+     */
     init {
         firstLoad()
     }
 
+    /**
+     * Интерфейс assisted-фабрики, используемый при [provideFactory]
+     * и [FragmentSectionWithGifs.viewModelAssistedFactory]
+     */
     @dagger.assisted.AssistedFactory
     interface AssistedFactory{
         fun create(searchType: SearchType): ViewModelSectionWithGifs
     }
 
+    /**
+     * Публичный метод пользовательского взаимодействия (ue = userEvent)
+     * Вызывается при нажатии пользователем на кнопку следующего гиф-изображения
+     * Вызывает приватный метод [loadNextGif]
+     */
     fun ueOnNextGifButtonClick(){
         loadNextGif()
     }
 
+    /**
+     * Публичный метод пользовательского взаимодействия (ue = userEvent)
+     * Вызывается при нажатии пользователем на кнопку предыдущего гиф-изображения
+     * Вызывает приватный метод [loadPreviouslyGif]
+     */
     fun ueOnPreviouslyGifButtonClick(){
         loadPreviouslyGif()
     }
 
+    /**
+     * Функция, вызываемая в блоке иницилизации вьюмодели, то есть при первом запуске
+     * Нужна для загрузки первоначального гиф-изображения без взаимодействия со стороны
+     * пользователя
+     * Вызывает [loadNextGif]
+     */
     private fun firstLoad(){
         loadNextGif()
     }
 
+    /**
+     * Приватная функция загрузки следующего гиф-изображения
+     * Инкрементит текущий индекс, следом проверяет путем функции [isGifInCache]
+     * находится ли гиф-изображением с позицией [currentNumberOfGif] в [loadedGifs]
+     * Если же находится вызывается [loadGifFromCache], если нет [loadGifFromNetwork]
+     */
     private fun loadNextGif(){
         currentNumberOfGif++
         if(isGifInCache(currentNumberOfGif)){
@@ -67,15 +129,32 @@ class ViewModelSectionWithGifs @AssistedInject constructor(
         }else loadGifFromNetwork()
     }
 
+    /**
+     * Приватная функция загрузки предыдущего гиф-изображения
+     * Декрементит текущий индекс, следом загружает гиф-изображение из кеша, так как
+     * если пользователь нажимает на кнопку предыдущего изображения, то это означает, что оно уже
+     * было загружено
+     */
     private fun loadPreviouslyGif(){
         currentNumberOfGif--
         loadGifFromCache()
     }
 
+    /**
+     * Загрузка гиф-изображения из [loadedGifs] и его отображение через [emitData]
+     */
     private fun loadGifFromCache(){
         emitData(loadedGifs[currentNumberOfGif])
     }
 
+    /**
+     * Получение объекта [BaseResult] из сети путем [getRandomGifUseCase]
+     * или [getGifsOfSectionUseCase] в зависимости от [searchType]
+     * В зависимости от типа полученного результата производится соответствено:
+     * Если [BaseResult.Error] - изменение [UIState] с ошибкой
+     * Если [BaseResult.Loading] - изменение [UIState] с видимостью прогресс индикатора
+     * Если [BaseResult.Success] - изменение [UIState] с полем [UIState.currentGif]
+     */
     private fun loadGifFromNetwork(){
         viewModelScope.launch(Dispatchers.IO){
             if(searchType == SearchType.RANDOM) {
@@ -122,16 +201,35 @@ class ViewModelSectionWithGifs @AssistedInject constructor(
         }
     }
 
+    /**
+     * Проверка существует ли [Gif] в [loadedGifs]
+     * на текущей позиции [currentNumberOfGif]
+     * @param position - текущий номер гиф-изображения
+     * @return - Есть или нет
+     */
     private fun isGifInCache(position: Int): Boolean{
         return loadedGifs.getOrNull(position) != null
     }
 
+    /**
+     * Приватный метод для определения существования гиф-изображения в [loadedGifs] на
+     * следующей позиции после текущей [currentNumberOfGif] + 1
+     */
     private fun hasNextGif(): Boolean =
         isGifInCache(currentNumberOfGif + 1)
 
+    /**
+     * Приватный метод для определения существования гиф-изображение
+     * Проверяет [currentNumberOfGif] больше ли 0
+     */
     private fun hasPreviouslyGif(): Boolean =
         currentNumberOfGif > 0
 
+    /**
+     * Изменение [_currentUiState] с новым [UIState] с новым гиф-изображением для отображением
+     * Вызывается при успешном получении гифки из сети
+     * @param gif - полученное гиф-изображение
+     */
     private fun emitData(gif: Gif){
         _currentUiState.value =
             UIState(
@@ -143,6 +241,11 @@ class ViewModelSectionWithGifs @AssistedInject constructor(
             )
     }
 
+    /**
+     * Изменение [_currentUiState] с ошибкой [Error]
+     * Вызывается при получении ошибки при попытке получить гифку из сети
+     * @param error - полученная ошибка
+     */
     private fun emitError(error: Error){
         _currentUiState.value =
             UIState(
@@ -154,6 +257,10 @@ class ViewModelSectionWithGifs @AssistedInject constructor(
             )
     }
 
+    /**
+     * Изменение [_currentUiState] со статусом об загрузке
+     * Вызывается при начале загрузки гиф-изображения из сети
+     */
     private fun setUiStateLoading(){
         _currentUiState.value =
             UIState(

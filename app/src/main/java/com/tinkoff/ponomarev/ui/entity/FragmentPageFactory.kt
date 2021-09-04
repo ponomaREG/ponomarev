@@ -2,6 +2,11 @@ package com.tinkoff.ponomarev.ui.entity
 
 import com.tinkoff.ponomarev.R
 
+/**
+ * Класс-контейнер, хранящий [InfoOfPage] информацию для отображения страниц для отображения
+ * гиф-изображений
+ * @property PAGES - страницы для отображения
+ */
 class FragmentPageFactory {
     companion object{
         val PAGES: Set<InfoOfPage> = setOf(
