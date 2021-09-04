@@ -14,5 +14,7 @@
     <color name="floatingButtonBackgroundTint">#FFFFFF</color>
     <!-- Text Colors -->
     <color name="primaryTextColor">#000000</color>
+    <color name="primaryTextColorInverse">#FFFFFF</color>
     <color name="secondaryTextColor">#717171</color>
+    <color name="backgroundGifTitle">#454444</color>
 </resources>

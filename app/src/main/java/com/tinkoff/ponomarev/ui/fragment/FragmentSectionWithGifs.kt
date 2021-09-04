@@ -26,7 +26,6 @@ class FragmentSectionWithGifs: Fragment() {
             getCurrentTypeOfSearch()
         )
     }
-    private lateinit var currentType: SearchType
 
     companion object{
         const val KEY_TYPE = "KEY_TYPE"
@@ -36,11 +35,6 @@ class FragmentSectionWithGifs: Fragment() {
             fragment.arguments = args
             return fragment
         }
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        getCurrentTypeOfSearch()
     }
 
     override fun onCreateView(
@@ -79,7 +73,10 @@ class FragmentSectionWithGifs: Fragment() {
                 binding.apply {
                     fragmentPageButtonPreviously.visible(state.visibilityOfButtonPreviously)
                     fragmentPageProgressIndicator.visible(state.visibilityOfLoadingIndicator)
-                    state.currentGifUrl?.let { fragmentPageGif.loadGif(it) }
+                    state.currentGif?.let {
+                        fragmentPageGif.loadGif(it.gifURL)
+                        fragmentPageGifTitle.text = it.description
+                    }
                 }
             }
         }

@@ -11,7 +11,6 @@ import dagger.assisted.AssistedInject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
 class ViewModelSectionWithGifs @AssistedInject constructor(
     private val getRandomGifUseCase: GetRandomGifUseCase,
@@ -110,7 +109,7 @@ class ViewModelSectionWithGifs @AssistedInject constructor(
                 visibilityOfButtonPreviously = hasPreviouslyGif(),
                 visibilityOfLoadingIndicator = false,
                 visibilityOfButtonNext = true,
-                currentGifUrl = gif.gifURLHttps,
+                currentGif = gif,
                 currentError = null
             )
     }
@@ -121,7 +120,7 @@ class ViewModelSectionWithGifs @AssistedInject constructor(
                 visibilityOfButtonPreviously = hasPreviouslyGif(),
                 visibilityOfLoadingIndicator = false,
                 visibilityOfButtonNext = hasNextGif(),
-                currentGifUrl = null,
+                currentGif = null,
                 currentError = error
             )
     }
@@ -132,7 +131,7 @@ class ViewModelSectionWithGifs @AssistedInject constructor(
                 visibilityOfButtonPreviously = hasPreviouslyGif(),
                 visibilityOfLoadingIndicator = true,
                 visibilityOfButtonNext = true,
-                currentGifUrl = null,
+                currentGif = null,
                 currentError = null
             )
     }
