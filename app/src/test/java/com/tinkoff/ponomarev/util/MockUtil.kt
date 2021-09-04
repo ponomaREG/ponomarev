@@ -4,7 +4,7 @@ import com.tinkoff.ponomarev.data.entity.network.GifBody
 import com.tinkoff.ponomarev.domain.entity.Gif
 
 class MockUtil {
-    companion object{
+    companion object {
         fun mockGif(): Gif =
             Gif(
                 id = 1,

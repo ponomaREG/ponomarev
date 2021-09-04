@@ -8,8 +8,8 @@ package com.tinkoff.ponomarev.ui.error
  * отсутствует ссылка при ответе сервера (видимо проблема на их стороне))
  * @property UnknownError - ошибка: неизвестная ошибка
  */
-sealed class Error: Throwable(){
-    object EmptyResultError: Error()
-    object UnknownError: Error()
-    object NullGifUrlError: Error()
+sealed class Error : Throwable() {
+    object EmptyResultError : Error()
+    object UnknownError : Error()
+    object NullGifUrlError : Error()
 }

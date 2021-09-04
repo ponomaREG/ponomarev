@@ -23,7 +23,7 @@ import javax.inject.Inject
  * [SearchType.LATEST]
  */
 @AndroidEntryPoint
-class FragmentSectionWithGifs: Fragment() {
+class FragmentSectionWithGifs : Fragment() {
 
     /**
      * Assisted-фабрика для передачи [SearchType] в вьюмодель [ViewModelSectionWithGifs] при
@@ -47,7 +47,7 @@ class FragmentSectionWithGifs: Fragment() {
         )
     }
 
-    companion object{
+    companion object {
 
         /**
          * Ключ для получения [SearchType] из bundle [getArguments]
@@ -85,7 +85,7 @@ class FragmentSectionWithGifs: Fragment() {
     /**
      * Получение типа поиска из [getArguments]
      */
-    private fun getCurrentTypeOfSearch(): SearchType{
+    private fun getCurrentTypeOfSearch(): SearchType {
         return arguments?.getParcelable(KEY_TYPE) ?: SearchType.RANDOM
     }
 
@@ -94,8 +94,8 @@ class FragmentSectionWithGifs: Fragment() {
      * Все слушатели вызывают методы во вьюмоделе, так как именно она контролирует [UIState]
      * фрагмента
      */
-    private fun attachListeners(){
-        with(binding){
+    private fun attachListeners() {
+        with(binding) {
             fragmentPageButtonPreviously.setOnClickListener {
                 viewModel.ueOnPreviouslyGifButtonClick()
             }
@@ -109,9 +109,9 @@ class FragmentSectionWithGifs: Fragment() {
      * Наблюдение источником дата вьюмодели
      * Данный метод отвечает собственно за изменение фрагмента при изменении состояния [UIState]
      */
-    private fun attachObserversToDataSources(){
-        with(viewModel){
-            currentUiState.observe(viewLifecycleOwner){ state ->
+    private fun attachObserversToDataSources() {
+        with(viewModel) {
+            currentUiState.observe(viewLifecycleOwner) { state ->
                 binding.apply {
                     fragmentPageButtonPreviously.visible(state.visibilityOfButtonPreviously)
                     fragmentPageProgressIndicator.visible(state.visibilityOfLoadingIndicator)
@@ -132,8 +132,8 @@ class FragmentSectionWithGifs: Fragment() {
      * Здесь реализовывается необходимая логика для уведомления пользователя об ошибке
      * @param - полученная ошибка
      */
-    private fun showError(error: Error){
-        val message = when(error){
+    private fun showError(error: Error) {
+        val message = when (error) {
             is Error.EmptyResultError -> {
                 binding.fragmentPageButtonNext.visible(false)
                 getString(R.string.error_empty_result)

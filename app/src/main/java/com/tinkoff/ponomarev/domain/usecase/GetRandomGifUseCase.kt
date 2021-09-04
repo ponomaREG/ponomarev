@@ -25,12 +25,12 @@ class GetRandomGifUseCase @Inject constructor(
      */
     suspend operator fun invoke(): Flow<BaseResult<Gif>> = flow {
         emit(BaseResult.Loading)
-        try{
+        try {
             val gif = repository.fetchRandomGif()
             emit(BaseResult.Success(gif))
             //API периодически бросает null ссылку
-            if(gif.gifURLHttps == null) emit(BaseResult.Error(Error.NullGifUrlError))
-        }catch (exc: Throwable){
+            if (gif.gifURLHttps == null) emit(BaseResult.Error(Error.NullGifUrlError))
+        } catch (exc: Throwable) {
             emit(BaseResult.Error(exc))
         }
     }

@@ -14,14 +14,15 @@ import javax.inject.Inject
 class GifRepositoryImpl @Inject constructor(
     private val gifService: GifService,
     private val gifMapper: GifMapper
-): GifRepository {
+) : GifRepository {
 
     /**
      * @see GifRepository.fetchGifsBySection
      */
     override suspend fun fetchGifsBySection(
         section: String,
-        page: Int): List<Gif> {
+        page: Int
+    ): List<Gif> {
         return gifService.getGifsBySection(section, page).result.map(gifMapper::fromGifBody)
     }
 

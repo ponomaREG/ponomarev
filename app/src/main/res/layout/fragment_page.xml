@@ -1,84 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <androidx.cardview.widget.CardView
-        android:id="@+id/fragment_page_cardView"
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constrainedHeight="true"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/fragment_page_progress_indicator"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="@dimen/page_card_margin"
-        app:cardCornerRadius="@dimen/page_card_corner_radius">
-        <ImageView
-            android:id="@+id/fragment_page_gif"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/fragment_page_cardView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/page_cd_gif"
-            android:scaleType="centerCrop"
-            tools:src="@tools:sample/avatars"
-            />
-        <TextView
-            android:id="@+id/fragment_page_gif_title"
-            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/page_card_margin"
+            app:cardCornerRadius="@dimen/page_card_corner_radius"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintBottom_toTopOf="@id/fragment_page_progress_indicator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/fragment_page_gif"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/page_cd_gif"
+                android:scaleType="centerCrop"
+                tools:src="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/fragment_page_gif_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="@drawable/background_gif_title"
+                android:padding="@dimen/page_gif_title_padding"
+                android:textColor="@color/primaryTextColorInverse"
+                android:textSize="@dimen/page_gif_title_size"
+                tools:text="@tools:sample/full_names" />
+        </androidx.cardview.widget.CardView>
+
+        <ProgressBar
+            android:id="@+id/fragment_page_progress_indicator"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/page_gif_title_padding"
-            android:textSize="@dimen/page_gif_title_size"
-            android:textColor="@color/primaryTextColorInverse"
-            android:background="@drawable/background_gif_title"
             android:layout_gravity="bottom"
-            tools:text="@tools:sample/full_names"
-            />
-    </androidx.cardview.widget.CardView>
-    <ProgressBar
-        android:id="@+id/fragment_page_progress_indicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/fragment_page_button_previously"
-        app:layout_constraintEnd_toStartOf="@id/fragment_page_button_next"
-        android:layout_margin="@dimen/page_button_margin"
-        android:layout_gravity="bottom"
-        android:scrollbarSize="@dimen/page_progress_indicator_scrollbar_size"
-        android:visibility="invisible"
-        tools:visibility="visible"
-        />
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fragment_page_button_previously"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/fragment_page_progress_indicator"
-        android:layout_margin="@dimen/page_button_margin"
-        android:padding="@dimen/page_button_padding"
-        android:contentDescription="@string/page_cd_button_previously"
-        android:rotation="180"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:srcCompat="@drawable/ic_arrow"
-        style="@style/Theme.Ponomarev.FloatingButton" />
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fragment_page_button_next"
-        style="@style/Theme.Ponomarev.FloatingButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/fragment_page_progress_indicator"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:padding="@dimen/page_button_padding"
-        android:layout_margin="@dimen/page_button_margin"
-        android:contentDescription="@string/page_cd_button_next"
-        app:srcCompat="@drawable/ic_arrow" />
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/fragment_page_button_group"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:constraint_referenced_ids="fragment_page_button_next, fragment_page_button_previously"
-        />
-</androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_margin="@dimen/page_button_margin"
+            android:scrollbarSize="@dimen/page_progress_indicator_scrollbar_size"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/fragment_page_button_next"
+            app:layout_constraintStart_toEndOf="@id/fragment_page_button_previously"
+            tools:visibility="visible" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fragment_page_button_previously"
+            style="@style/Theme.Ponomarev.FloatingButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/page_button_margin"
+            android:contentDescription="@string/page_cd_button_previously"
+            android:padding="@dimen/page_button_padding"
+            android:rotation="180"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/fragment_page_progress_indicator"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_arrow" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fragment_page_button_next"
+            style="@style/Theme.Ponomarev.FloatingButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/page_button_margin"
+            android:contentDescription="@string/page_cd_button_next"
+            android:padding="@dimen/page_button_padding"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/fragment_page_progress_indicator"
+            app:srcCompat="@drawable/ic_arrow" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/fragment_page_button_group"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:constraint_referenced_ids="fragment_page_button_next, fragment_page_button_previously" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,6 +1,7 @@
 package com.tinkoff.ponomarev.ui.entity
 
 import android.os.Parcelable
+import com.tinkoff.ponomarev.ui.entity.SearchType.*
 import kotlinx.parcelize.Parcelize
 
 /**

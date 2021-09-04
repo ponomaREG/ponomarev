@@ -25,9 +25,9 @@ class ViewModelSectionWithGifs @AssistedInject constructor(
     private val getRandomGifUseCase: GetRandomGifUseCase,
     private val getGifsOfSectionUseCase: GetGifsOfSectionUseCase,
     @Assisted private val searchType: SearchType
-): ViewModel() {
+) : ViewModel() {
 
-    companion object{
+    companion object {
         /**
          * Метод для опрокидывания фабрики для вьюмодели. Нужен для assited-инжекта текущего
          * типа поиска [searchType] из фрагмента
@@ -37,7 +37,7 @@ class ViewModelSectionWithGifs @AssistedInject constructor(
         fun provideFactory(
             assistedFactory: AssistedFactory,
             searchType: SearchType
-        ): ViewModelProvider.Factory = object : ViewModelProvider.Factory{
+        ): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 return assistedFactory.create(searchType) as T
             }
@@ -48,7 +48,7 @@ class ViewModelSectionWithGifs @AssistedInject constructor(
      * Публичный живые данные с текущим состоянием UI
      */
     val currentUiState: LiveData<UIState>
-    get() = _currentUiState
+        get() = _currentUiState
 
     /**
      * Приватные мутабельные живые данные с текущим состоянием UI
@@ -59,7 +59,7 @@ class ViewModelSectionWithGifs @AssistedInject constructor(
     /**
      * Приватный изменяемый лист с уже загруженными объектами гиф-изображений [Gif]
      */
-    private val loadedGifs:MutableList<Gif> = mutableListOf()
+    private val loadedGifs: MutableList<Gif> = mutableListOf()
 
     /**
      * Текущий номер гиф-изображения
@@ -84,7 +84,7 @@ class ViewModelSectionWithGifs @AssistedInject constructor(
      * и [FragmentSectionWithGifs.viewModelAssistedFactory]
      */
     @dagger.assisted.AssistedFactory
-    interface AssistedFactory{
+    interface AssistedFactory {
         fun create(searchType: SearchType): ViewModelSectionWithGifs
     }
 
@@ -93,7 +93,7 @@ class ViewModelSectionWithGifs @AssistedInject constructor(
      * Вызывается при нажатии пользователем на кнопку следующего гиф-изображения
      * Вызывает приватный метод [loadNextGif]
      */
-    fun ueOnNextGifButtonClick(){
+    fun ueOnNextGifButtonClick() {
         loadNextGif()
     }
 
@@ -102,7 +102,7 @@ class ViewModelSectionWithGifs @AssistedInject constructor(
      * Вызывается при нажатии пользователем на кнопку предыдущего гиф-изображения
      * Вызывает приватный метод [loadPreviouslyGif]
      */
-    fun ueOnPreviouslyGifButtonClick(){
+    fun ueOnPreviouslyGifButtonClick() {
         loadPreviouslyGif()
     }
 
@@ -112,7 +112,7 @@ class ViewModelSectionWithGifs @AssistedInject constructor(
      * пользователя
      * Вызывает [loadNextGif]
      */
-    private fun firstLoad(){
+    private fun firstLoad() {
         loadNextGif()
     }
 
@@ -122,11 +122,11 @@ class ViewModelSectionWithGifs @AssistedInject constructor(
      * находится ли гиф-изображением с позицией [currentNumberOfGif] в [loadedGifs]
      * Если же находится вызывается [loadGifFromCache], если нет [loadGifFromNetwork]
      */
-    private fun loadNextGif(){
+    private fun loadNextGif() {
         currentNumberOfGif++
-        if(isGifInCache(currentNumberOfGif)){
+        if (isGifInCache(currentNumberOfGif)) {
             loadGifFromCache()
-        }else loadGifFromNetwork()
+        } else loadGifFromNetwork()
     }
 
     /**
@@ -135,7 +135,7 @@ class ViewModelSectionWithGifs @AssistedInject constructor(
      * если пользователь нажимает на кнопку предыдущего изображения, то это означает, что оно уже
      * было загружено
      */
-    private fun loadPreviouslyGif(){
+    private fun loadPreviouslyGif() {
         currentNumberOfGif--
         loadGifFromCache()
     }
@@ -143,7 +143,7 @@ class ViewModelSectionWithGifs @AssistedInject constructor(
     /**
      * Загрузка гиф-изображения из [loadedGifs] и его отображение через [emitData]
      */
-    private fun loadGifFromCache(){
+    private fun loadGifFromCache() {
         emitData(loadedGifs[currentNumberOfGif])
     }
 
@@ -155,9 +155,9 @@ class ViewModelSectionWithGifs @AssistedInject constructor(
      * Если [BaseResult.Loading] - изменение [UIState] с видимостью прогресс индикатора
      * Если [BaseResult.Success] - изменение [UIState] с полем [UIState.currentGif]
      */
-    private fun loadGifFromNetwork(){
-        viewModelScope.launch(Dispatchers.IO){
-            if(searchType == SearchType.RANDOM) {
+    private fun loadGifFromNetwork() {
+        viewModelScope.launch(Dispatchers.IO) {
+            if (searchType == SearchType.RANDOM) {
                 getRandomGifUseCase().collect { result ->
                     withContext(Dispatchers.Main) {
                         when (result) {
@@ -166,7 +166,7 @@ class ViewModelSectionWithGifs @AssistedInject constructor(
                             }
                             is BaseResult.Error -> {
                                 val error =
-                                    if(result.exception is Error) result.exception
+                                    if (result.exception is Error) result.exception
                                     else Error.UnknownError
                                 emitError(error as Error)
                             }
@@ -177,7 +177,7 @@ class ViewModelSectionWithGifs @AssistedInject constructor(
                         }
                     }
                 }
-            }else {
+            } else {
                 getGifsOfSectionUseCase(searchType.sectionName, ++currentPage).collect { result ->
                     withContext(Dispatchers.Main) {
                         when (result) {
@@ -186,7 +186,7 @@ class ViewModelSectionWithGifs @AssistedInject constructor(
                             }
                             is BaseResult.Error -> {
                                 val error =
-                                    if(result.exception is Error) result.exception
+                                    if (result.exception is Error) result.exception
                                     else Error.UnknownError
                                 emitError(error as Error)
                             }
@@ -207,7 +207,7 @@ class ViewModelSectionWithGifs @AssistedInject constructor(
      * @param position - текущий номер гиф-изображения
      * @return - Есть или нет
      */
-    private fun isGifInCache(position: Int): Boolean{
+    private fun isGifInCache(position: Int): Boolean {
         return loadedGifs.getOrNull(position) != null
     }
 
@@ -230,7 +230,7 @@ class ViewModelSectionWithGifs @AssistedInject constructor(
      * Вызывается при успешном получении гифки из сети
      * @param gif - полученное гиф-изображение
      */
-    private fun emitData(gif: Gif){
+    private fun emitData(gif: Gif) {
         _currentUiState.value =
             UIState(
                 visibilityOfButtonPreviously = hasPreviouslyGif(),
@@ -246,7 +246,7 @@ class ViewModelSectionWithGifs @AssistedInject constructor(
      * Вызывается при получении ошибки при попытке получить гифку из сети
      * @param error - полученная ошибка
      */
-    private fun emitError(error: Error){
+    private fun emitError(error: Error) {
         _currentUiState.value =
             UIState(
                 visibilityOfButtonPreviously = hasPreviouslyGif(),
@@ -261,7 +261,7 @@ class ViewModelSectionWithGifs @AssistedInject constructor(
      * Изменение [_currentUiState] со статусом об загрузке
      * Вызывается при начале загрузки гиф-изображения из сети
      */
-    private fun setUiStateLoading(){
+    private fun setUiStateLoading() {
         _currentUiState.value =
             UIState(
                 visibilityOfButtonPreviously = hasPreviouslyGif(),

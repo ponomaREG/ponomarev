@@ -7,4 +7,4 @@ import dagger.hilt.android.HiltAndroidApp
  * Класс-приложения
  */
 @HiltAndroidApp
-class App: Application()
+class App : Application()

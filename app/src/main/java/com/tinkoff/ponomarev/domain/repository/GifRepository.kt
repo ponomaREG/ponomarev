@@ -5,7 +5,7 @@ import com.tinkoff.ponomarev.domain.entity.Gif
 /**
  * Интерфейс репозитория для получения данных
  */
-interface GifRepository{
+interface GifRepository {
 
     /**
      * Получение гиф-изображений конкретной секции

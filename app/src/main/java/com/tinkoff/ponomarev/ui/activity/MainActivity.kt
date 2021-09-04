@@ -39,34 +39,34 @@ class MainActivity : AppCompatActivity() {
     /**
      * Установка ToolBar как ActionBar
      */
-    private fun setupActionBar(){
+    private fun setupActionBar() {
         setSupportActionBar(binding.mainToolBar)
     }
 
     /**
      * Иницилизация адаптера
      */
-    private fun initAdapters(){
+    private fun initAdapters() {
         viewPagerAdapter = PagerAdapter(this)
     }
 
     /**
      * Связывание адаптера и ViewPager
      */
-    private fun attachAdapter(){
+    private fun attachAdapter() {
         binding.mainViewPager.adapter = viewPagerAdapter
     }
 
     /**
      * Связывание TabLayout и ViewPager при помощи [TabLayoutMediator]
      */
-    private fun attachTabLayoutToViewPager(){
+    private fun attachTabLayoutToViewPager() {
         TabLayoutMediator(
             binding.mainTabs,
             binding.mainViewPager,
             true,
             true
-        ){ tab: TabLayout.Tab, position: Int ->
+        ) { tab: TabLayout.Tab, position: Int ->
             viewPagerAdapter.getInfoByPosition(position)?.let { info ->
                 tab.text = getString(info.resourceTitleId)
                 binding.mainViewPager.setCurrentItem(tab.position, true)

@@ -13,8 +13,8 @@ import com.bumptech.glide.load.resource.gif.GifDrawable
  * Функция-расширение, которая определяет текущую видимость вьюшки
  * @param isVisible - видима ли
  */
-fun View.visible(isVisible: Boolean){
-    visibility = if(isVisible) View.VISIBLE else View.INVISIBLE
+fun View.visible(isVisible: Boolean) {
+    visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
 }
 
 /**
@@ -22,7 +22,7 @@ fun View.visible(isVisible: Boolean){
  * с помощью [Glide]
  * @param gifUrl - url-ссылка на изображение
  */
-fun ImageView.loadGif(gifUrl: String){
+fun ImageView.loadGif(gifUrl: String) {
     Glide.with(this)
         .asGif()
         .load(gifUrl)

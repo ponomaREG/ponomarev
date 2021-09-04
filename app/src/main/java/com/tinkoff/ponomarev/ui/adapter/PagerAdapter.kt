@@ -13,7 +13,7 @@ import com.tinkoff.ponomarev.ui.fragment.FragmentSectionWithGifs
  */
 class PagerAdapter(
     fragmentActivity: FragmentActivity
-    ): FragmentStateAdapter(fragmentActivity) {
+) : FragmentStateAdapter(fragmentActivity) {
 
     /**
      * Фрагменты для отображения, получаемые из [FragmentPageFactory]
@@ -33,7 +33,7 @@ class PagerAdapter(
      * @param position - позиция
      * @return [InfoOfPage]
      */
-    fun getInfoByPosition(position: Int): InfoOfPage?{
+    fun getInfoByPosition(position: Int): InfoOfPage? {
         return fragments.getOrNull(position)
     }
 }

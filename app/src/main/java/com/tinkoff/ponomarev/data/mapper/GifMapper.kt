@@ -14,7 +14,7 @@ class GifMapper @Inject constructor(
     /**
      * Из [GifBody] в [Gif]
      */
-    fun fromGifBody(gifBody: GifBody): Gif{
+    fun fromGifBody(gifBody: GifBody): Gif {
         return Gif(
             id = gifBody.id,
             description = gifBody.description,

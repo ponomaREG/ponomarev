@@ -25,13 +25,13 @@ class GetGifsOfSectionUseCase @Inject constructor(
      * Следом в зависимости от статуса запроса емиттит либо ошибку [BaseResult.Error],
      * либо полученные данные [BaseResult.Success]
      */
-    suspend operator fun invoke(section: String, page: Int): Flow<BaseResult<List<Gif>>>  = flow {
+    suspend operator fun invoke(section: String, page: Int): Flow<BaseResult<List<Gif>>> = flow {
         emit(BaseResult.Loading)
         try {
             val gifs = repository.fetchGifsBySection(section, page)
-            if(gifs.isEmpty()) throw Error.EmptyResultError // Если результат пустой, то ошибка
+            if (gifs.isEmpty()) throw Error.EmptyResultError // Если результат пустой, то ошибка
             emit(BaseResult.Success(gifs))
-        }catch (exc: Throwable){
+        } catch (exc: Throwable) {
             emit(BaseResult.Error(exc))
         }
     }

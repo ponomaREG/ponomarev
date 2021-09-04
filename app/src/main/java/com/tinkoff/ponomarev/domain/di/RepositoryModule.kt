@@ -1,11 +1,11 @@
 package com.tinkoff.ponomarev.domain.di
 
+import com.tinkoff.ponomarev.data.repository.GifRepositoryImpl
+import com.tinkoff.ponomarev.domain.repository.GifRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import com.tinkoff.ponomarev.data.repository.GifRepositoryImpl
-import com.tinkoff.ponomarev.domain.repository.GifRepository
 import javax.inject.Singleton
 
 /**
