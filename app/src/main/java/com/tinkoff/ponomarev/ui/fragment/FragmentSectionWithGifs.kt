@@ -79,9 +79,9 @@ class FragmentSectionWithGifs: Fragment() {
                 binding.apply {
                     fragmentPageButtonPreviously.visible(state.visibilityOfButtonPreviously)
                     fragmentPageProgressIndicator.visible(state.visibilityOfLoadingIndicator)
-                    state.currentGif?.let {
-                        fragmentPageGif.loadGif(it.gifURLHttps)
-                        fragmentPageGifTitle.text = it.description
+                    state.currentGif?.let { gif ->
+                        gif.gifURLHttps?.let { url -> fragmentPageGif.loadGif(url) }
+                        fragmentPageGifTitle.text = gif.description
                     }
                     state.currentError?.let { error ->
                         showError(error)
@@ -92,14 +92,15 @@ class FragmentSectionWithGifs: Fragment() {
     }
 
     private fun showError(error: Error){
-        when(error){
+        val message = when(error){
             is Error.EmptyResultError -> {
                 binding.fragmentPageButtonNext.visible(false)
-                Snackbar.make(binding.root, "Пустой результат", Snackbar.LENGTH_SHORT).show()
+                "Пустой результат"
             }
             else -> {
-                Snackbar.make(binding.root, "Неизвестная ошибка", Snackbar.LENGTH_SHORT).show()
+                "Неизвестная ошибка"
             }
         }
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
     }
 }
