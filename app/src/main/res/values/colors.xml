@@ -2,9 +2,9 @@
 <!-- Light version -->
 <resources>
     <!-- Primary colors -->
-    <color name="primaryColor">#344955</color>
-    <color name="primaryLightColor">#394145</color>
-    <color name="primaryDarkColor">#232F34</color>
+    <color name="primaryColor">#FFFFFF</color>
+    <color name="primaryLightColor">#FFFFFF</color>
+    <color name="primaryDarkColor">#CFCFCF</color>
     <!-- Secondary colors -->
     <color name="secondaryColor">#3345EA</color>
     <color name="secondaryLightColor">#DFAF3B</color>

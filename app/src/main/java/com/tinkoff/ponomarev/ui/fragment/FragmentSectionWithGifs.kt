@@ -1,14 +1,17 @@
 package com.tinkoff.ponomarev.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.google.android.material.snackbar.Snackbar
 import com.tinkoff.ponomarev.databinding.FragmentPageBinding
 import com.tinkoff.ponomarev.ui.entity.SearchType
+import com.tinkoff.ponomarev.ui.error.Error
 import com.tinkoff.ponomarev.ui.ext.loadGif
 import com.tinkoff.ponomarev.ui.ext.visible
 import dagger.hilt.android.AndroidEntryPoint
@@ -77,7 +80,22 @@ class FragmentSectionWithGifs: Fragment() {
                         fragmentPageGif.loadGif(it.gifURLHttps)
                         fragmentPageGifTitle.text = it.description
                     }
+                    state.currentError?.let { error ->
+                        showError(error)
+                    }
                 }
+            }
+        }
+    }
+
+    private fun showError(error: Error){
+        when(error){
+            is Error.EmptyResultError -> {
+                binding.fragmentPageButtonNext.visible(false)
+                Snackbar.make(binding.root, "Пустой результат", Snackbar.LENGTH_SHORT).show()
+            }
+            else -> {
+                Snackbar.make(binding.root, "Неизвестная ошибка", Snackbar.LENGTH_SHORT).show()
             }
         }
     }

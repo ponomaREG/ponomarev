@@ -1,6 +1,7 @@
 package com.tinkoff.ponomarev.ui.fragment
 
 import androidx.lifecycle.*
+import com.tinkoff.ponomarev.domain.base.BaseResult
 import com.tinkoff.ponomarev.domain.entity.Gif
 import com.tinkoff.ponomarev.domain.usecase.GetGifsOfSectionUseCase
 import com.tinkoff.ponomarev.domain.usecase.GetRandomGifUseCase
@@ -9,6 +10,7 @@ import com.tinkoff.ponomarev.ui.error.Error
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -75,19 +77,46 @@ class ViewModelSectionWithGifs @AssistedInject constructor(
     }
 
     private fun loadGifFromNetwork(){
-        setUiStateLoading()
         viewModelScope.launch(Dispatchers.IO){
             if(searchType == SearchType.RANDOM) {
-                val gif = getRandomGifUseCase()
-                loadedGifs.add(gif)
-                withContext(Dispatchers.Main) {
-                    emitData(gif)
+                getRandomGifUseCase().collect { result ->
+                    withContext(Dispatchers.Main) {
+                        when (result) {
+                            is BaseResult.Loading -> {
+                                setUiStateLoading()
+                            }
+                            is BaseResult.Error -> {
+                                val error =
+                                    if(result.exception is Error) result.exception
+                                    else Error.UnknownError
+                                emitError(error as Error)
+                            }
+                            is BaseResult.Success -> {
+                                loadedGifs.add(result.data)
+                                emitData(result.data)
+                            }
+                        }
+                    }
                 }
             }else {
-                val gifs = getGifsOfSectionUseCase(searchType.sectionName, ++currentPage)
-                loadedGifs.addAll(gifs)
-                withContext(Dispatchers.Main){
-                    emitData(gifs.first())
+                getGifsOfSectionUseCase(searchType.sectionName, ++currentPage).collect { result ->
+                    withContext(Dispatchers.Main) {
+                        when (result) {
+                            is BaseResult.Loading -> {
+                                setUiStateLoading()
+                            }
+                            is BaseResult.Error -> {
+                                val error =
+                                    if(result.exception is Error) result.exception
+                                    else Error.UnknownError
+                                emitError(error as Error)
+                            }
+                            is BaseResult.Success -> {
+                                loadedGifs.addAll(result.data)
+                                emitData(result.data.first())
+                            }
+                        }
+                    }
                 }
             }
         }

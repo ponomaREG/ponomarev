@@ -11,7 +11,9 @@ class GifRepositoryImpl @Inject constructor(
     private val gifMapper: GifMapper
 ): GifRepository {
 
-    override suspend fun fetchGifsBySection(section: String, page: Int): List<Gif> {
+    override suspend fun fetchGifsBySection(
+        section: String,
+        page: Int): List<Gif> {
         return gifService.getGifsBySection(section, page).result.map(gifMapper::fromGifBody)
     }
 

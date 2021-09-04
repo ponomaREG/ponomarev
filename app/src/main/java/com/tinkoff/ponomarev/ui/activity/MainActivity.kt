@@ -25,6 +25,10 @@ class MainActivity : AppCompatActivity() {
         attachTabLayoutToViewPager()
     }
 
+    private fun setupActionBar(){
+        setSupportActionBar(binding.mainToolBar)
+    }
+
     private fun initAdapters(){
         viewPagerAdapter = PagerAdapter(this)
     }
@@ -41,10 +45,9 @@ class MainActivity : AppCompatActivity() {
             true
         ){ tab: TabLayout.Tab, position: Int ->
             viewPagerAdapter.getInfoByPosition(position)?.let { info ->
-                Log.e("str",getString(info.resourceTitleId))
                 tab.text = getString(info.resourceTitleId)
                 binding.mainViewPager.setCurrentItem(tab.position, true)
             }
-        }
+        }.attach()
     }
 }

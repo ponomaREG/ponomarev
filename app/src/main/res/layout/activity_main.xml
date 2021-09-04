@@ -14,12 +14,23 @@
             android:id="@+id/main_toolBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:contentInsetStart="0dp"
             app:popupTheme="@style/Theme.Ponomarev.PopupMenu"
-            />
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="27sp"
+                android:text="@string/main_toolBar_title"
+                android:gravity="center"
+                android:textColor="@color/primaryTextColor"
+                />
+        </androidx.appcompat.widget.Toolbar>
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/main_tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/Theme.Ponomarev.TabLayout"
             />
     </com.google.android.material.appbar.AppBarLayout>
     <androidx.viewpager2.widget.ViewPager2
