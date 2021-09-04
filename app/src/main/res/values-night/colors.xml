@@ -11,10 +11,10 @@
     <color name="secondaryDarkColor">#ECA51A</color>
     <!-- Icon color -->
     <color name="floatingButtonIconTint">#FFFFFF</color>
-    <color name="floatingButtonBackgroundTint">#000000</color>
+    <color name="floatingButtonBackgroundTint">#4E4E4E</color>
     <!-- Text Colors -->
     <color name="primaryTextColor">#FFFFFF</color>
-    <color name="primaryTextColorInverse">#333333</color>
+    <color name="primaryTextColorInverse">#101010</color>
     <color name="secondaryTextColor">#AAAAAA</color>
-    <color name="backgroundGifTitle">#DDDDDD</color>
+    <color name="backgroundGifTitle">#FFFFFF</color>
 </resources>
