@@ -2,6 +2,7 @@ package com.tinkoff.ponomarev.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.databinding.DataBindingUtil
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -40,6 +41,7 @@ class MainActivity : AppCompatActivity() {
             true
         ){ tab: TabLayout.Tab, position: Int ->
             viewPagerAdapter.getInfoByPosition(position)?.let { info ->
+                Log.e("str",getString(info.resourceTitleId))
                 tab.text = getString(info.resourceTitleId)
                 binding.mainViewPager.setCurrentItem(tab.position, true)
             }
