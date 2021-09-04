@@ -22,6 +22,7 @@
         <item name="tint">@color/floatingButtonIconTint</item>
         <item name="fabCustomSize">48dp</item>
         <item name="maxImageSize">36dp</item>
+        <item name="elevation">5dp</item>
         <item name="backgroundTint">@color/floatingButtonBackgroundTint</item>
     </style>
     <!-- TabLayout Theme -->

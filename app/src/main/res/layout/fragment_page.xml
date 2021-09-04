@@ -23,6 +23,17 @@
             android:scaleType="centerCrop"
             tools:src="@tools:sample/avatars"
             />
+        <TextView
+            android:id="@+id/fragment_page_gif_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textSize="16sp"
+            android:textColor="@color/primaryTextColorInverse"
+            android:background="@drawable/background_gif_title"
+            android:layout_gravity="bottom"
+            tools:text="@tools:sample/full_names"
+            />
     </androidx.cardview.widget.CardView>
     <ProgressBar
         android:id="@+id/fragment_page_progress_indicator"
