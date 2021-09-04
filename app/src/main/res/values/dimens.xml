@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Page -->
+    <!-- Страница с гифками -->
     <dimen name="page_button_margin">16dp</dimen>
-    <!-- Gif view -->
     <dimen name="page_card_margin">16dp</dimen>
     <dimen name="page_card_corner_radius">16dp</dimen>
+    <dimen name="page_gif_title_padding">5dp</dimen>
+    <dimen name="page_progress_indicator_scrollbar_size">22dp</dimen>
+    <dimen name="page_button_padding">3dp</dimen>
+    <!-- Главная страница -->
+    <dimen name="main_toolBar_startInset">0dp</dimen>
 
 </resources>

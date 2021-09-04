@@ -139,10 +139,13 @@ class FragmentSectionWithGifs: Fragment() {
         val message = when(error){
             is Error.EmptyResultError -> {
                 binding.fragmentPageButtonNext.visible(false)
-                "Пустой результат"
+                getString(R.string.error_empty_result)
+            }
+            is Error.NullGifUrlError -> {
+                getString(R.string.error_incorrect_input_data)
             }
             else -> {
-                "Неизвестная ошибка"
+                getString(R.string.error_unknown_error)
             }
         }
         Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()

@@ -7,8 +7,8 @@
     <color name="primaryDarkColor">#000000</color>
     <!-- Secondary colors -->
     <color name="secondaryColor">#3345EA</color>
-    <color name="secondaryLightColor">#DFAF3B</color>
-    <color name="secondaryDarkColor">#ECA51A</color>
+    <color name="secondaryLightColor">#5F6FFF</color>
+    <color name="secondaryDarkColor">#2532AE</color>
     <!-- Icon color -->
     <color name="floatingButtonIconTint">#FFFFFF</color>
     <color name="floatingButtonBackgroundTint">#4E4E4E</color>

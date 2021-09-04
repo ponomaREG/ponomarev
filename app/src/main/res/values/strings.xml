@@ -1,24 +1,14 @@
 <resources>
     <string name="app_name">GIFer</string>
 
-    <string name="tab_random">Случайные</string>
-    <string name="tab_top">Лучшие</string>
-    <string name="tab_latest">Последние</string>
-    <string name="tab_hot">Горячие</string>
-    <string name="fab_description_refresh">Refresh a gif</string>
-    <string name="fab_description_left">Back to a previous gif</string>
-    <string name="fab_description_right">Go to next gif</string>
-
-    <string name="dialog_info_title">О приложении</string>
-    <string name="dialog_info_close">Закрыть</string>
-
-    <string name="menu_settings">Настройки</string>
-    <string name="menu_about">О программе</string>
-    <string name="description_image_gif">gif image</string>
-
     <string name="section_random">Рандомные</string>
     <string name="section_hottest">Горячее</string>
     <string name="section_top">Топ</string>
     <string name="section_latest">Последние</string>
+
     <string name="main_toolBar_title">Tinkoff</string>
+
+    <string name="error_empty_result">Пустой результат</string>
+    <string name="error_incorrect_input_data">Некорректные полученные данные</string>
+    <string name="error_unknown_error">Неизвестная ошибка</string>
 </resources>
