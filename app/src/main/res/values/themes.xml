@@ -2,20 +2,20 @@
     <!-- Base application theme. -->
     <style name="Theme.Ponomarev" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/primaryColor</item>
-        <item name="colorPrimaryVariant">@color/primaryDarkColor</item>
-        <item name="colorOnPrimary">@color/primaryLightColor</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primaryVariant</item>
+        <item name="colorOnPrimary">@color/primaryOn</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/secondaryColor</item>
-        <item name="colorSecondaryVariant">@color/secondaryDarkColor</item>
-        <item name="colorOnSecondary">@color/secondaryLightColor</item>
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSecondaryVariant">@color/secondaryVariant</item>
+        <item name="colorOnSecondary">@color/secondaryOn</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
     <!-- PopupMenu Theme -->
     <style name="Theme.Ponomarev.PopupMenu" parent="@style/ThemeOverlay.AppCompat.ActionBar">
-        <item name="popupMenuBackground">@color/primaryColor</item>
+        <item name="popupMenuBackground">@color/primary</item>
     </style>
     <!-- FloatingButton Theme -->
     <style name="Theme.Ponomarev.FloatingButton" parent="Widget.MaterialComponents.FloatingActionButton">
@@ -27,9 +27,9 @@
     </style>
     <!-- TabLayout Theme -->
     <style name="Theme.Ponomarev.TabLayout" parent="Widget.Design.TabLayout">
-        <item name="tabIndicatorColor">@color/secondaryColor</item>
+        <item name="tabIndicatorColor">@color/secondary</item>
         <item name="tabTextAppearance">@style/Theme.Ponomarev.TabLayout.TextAppearance</item>
-        <item name="tabSelectedTextColor">@color/secondaryColor</item>
+        <item name="tabSelectedTextColor">@color/secondary</item>
         <item name="tabTextColor">@color/primaryTextColor</item>
     </style>
     <!-- TabLayout TextAppearance -->
