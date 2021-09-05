@@ -266,7 +266,7 @@ class ViewModelSectionWithGifs @AssistedInject constructor(
             UIState(
                 visibilityOfButtonPreviously = hasPreviouslyGif(),
                 visibilityOfLoadingIndicator = true,
-                visibilityOfButtonNext = true,
+                visibilityOfButtonNext = false,
                 currentGif = null,
                 currentError = null
             )

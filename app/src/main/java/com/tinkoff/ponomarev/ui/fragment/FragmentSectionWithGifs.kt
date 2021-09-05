@@ -115,6 +115,7 @@ class FragmentSectionWithGifs : Fragment() {
                 binding.apply {
                     fragmentPageButtonPreviously.visible(state.visibilityOfButtonPreviously)
                     fragmentPageProgressIndicator.visible(state.visibilityOfLoadingIndicator)
+                    fragmentPageButtonNext.visible(state.visibilityOfButtonNext)
                     state.currentGif?.let { gif ->
                         gif.gifURLHttps?.let { url -> fragmentPageGif.loadGif(url) }
                         fragmentPageGifTitle.text = gif.description
