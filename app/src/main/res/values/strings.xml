@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">ponomarev</string>
+    <string name="app_name">GIFer</string>
+
+    <string name="section_random">Рандомные</string>
+    <string name="section_hottest">Горячее</string>
+    <string name="section_top">Топ</string>
+    <string name="section_latest">Последние</string>
+
+    <string name="main_toolBar_title">Tinkoff</string>
+
+    <string name="error_empty_result">Пустой результат</string>
+    <string name="error_incorrect_input_data">Некорректные полученные данные</string>
+    <string name="error_unknown_error">Неизвестная ошибка</string>
 </resources>

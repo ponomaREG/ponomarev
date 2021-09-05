@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="page_cd_button_previously">Предыдущее гиф-изображение</string>
+    <string name="page_cd_button_next">Следующее гиф-изображение</string>
+    <string name="page_cd_gif">Гиф-изображение</string>
+</resources>

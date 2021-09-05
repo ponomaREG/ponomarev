@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary colors -->
+    <color name="primary">#171717</color>
+    <color name="primaryOn">#2E2E2E</color>
+    <color name="primaryVariant">#000000</color>
+    <!-- Secondary colors -->
+    <color name="secondary">#3345EA</color>
+    <color name="secondaryOn">#5F6FFF</color>
+    <color name="secondaryVariant">#2532AE</color>
+    <!-- Icon color -->
+    <color name="floatingButtonIconTint">#FFFFFF</color>
+    <color name="floatingButtonBackgroundTint">#4E4E4E</color>
+    <!-- Text Colors -->
+    <color name="primaryTextColor">#FFFFFF</color>
+    <color name="primaryTextColorInverse">#101010</color>
+    <color name="secondaryTextColor">#AAAAAA</color>
+    <color name="backgroundGifTitle">#FFFFFF</color>
+</resources>
