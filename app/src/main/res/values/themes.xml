@@ -36,4 +36,8 @@
     <style name="Theme.Ponomarev.TabLayout.TextAppearance" parent="TextAppearance.AppCompat">
         <item name="android:textSize">13sp</item>
     </style>
+    <!-- SplashScreen -->
+    <style name="Theme.Ponomarev.Splash">
+        <item name="android:windowBackground">@drawable/splash_drawable</item>
+    </style>
 </resources>

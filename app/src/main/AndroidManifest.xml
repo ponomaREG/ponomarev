@@ -3,6 +3,7 @@
     package="com.tinkoff.ponomarev">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -12,14 +13,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Ponomarev">
         <activity
-            android:name=".ui.activity.MainActivity"
-            android:exported="true">
+            android:name=".ui.activity.SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Ponomarev.Splash"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:exported="true"
+            />
     </application>
 
 </manifest>
