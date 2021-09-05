@@ -3,7 +3,7 @@ package com.tinkoff.ponomarev.ui.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.tinkoff.ponomarev.ui.entity.FragmentPageFactory
+import com.tinkoff.ponomarev.ui.entity.SectionFactory
 import com.tinkoff.ponomarev.ui.entity.InfoOfPage
 import com.tinkoff.ponomarev.ui.fragment.FragmentSectionWithGifs
 
@@ -16,9 +16,9 @@ class PagerAdapter(
 ) : FragmentStateAdapter(fragmentActivity) {
 
     /**
-     * Фрагменты для отображения, получаемые из [FragmentPageFactory]
+     * Фрагменты для отображения, получаемые из [SectionFactory]
      */
-    private val fragments: List<InfoOfPage> = FragmentPageFactory.PAGES.toList()
+    private val fragments: List<InfoOfPage> = SectionFactory.PAGES.toList()
 
     override fun getItemCount(): Int = fragments.size
 
