@@ -16,4 +16,6 @@
     <color name="primaryTextColorInverse">#101010</color>
     <color name="secondaryTextColor">#AAAAAA</color>
     <color name="backgroundGifTitle">#FFFFFF</color>
+    <!-- Splash Colors -->
+    <color name="splashScreenSolid">#000000</color>
 </resources>
